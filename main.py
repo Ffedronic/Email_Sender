@@ -9,7 +9,7 @@ data = response.json()
 content = []
 body = ""
 
-for index, article in enumerate(data["results"]) :
+for article in data["results"] :
     body = body + "\n" + article["title"] + "\n" + article["description"] + "\n"*2
 
 body = body.encode("utf-8")
