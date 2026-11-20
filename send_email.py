@@ -1,6 +1,10 @@
+import os
+from dotenv import load_dotenv
 import smtplib
 import ssl
 from email.message import EmailMessage
+
+load_dotenv()
 
 def send_email(content):
     content = content.decode("utf-8")
@@ -8,12 +12,12 @@ def send_email(content):
     host = "smtp.gmail.com"
     port = 465
 
-    sender_email = "fedronicfelix.dev@gmail.com"
-    password = "djqgupwnglhjauvq"
+    sender_email = str(os.getenv("SENDER_EMAIL"))
+    password = str(os.getenv("APP_PASSWORD_SENDER"))
 
     message = EmailMessage()
     message["From"] = sender_email
-    message["To"] = "fedronicfelix@gmail.com"
+    message["To"] = str(os.getenv("DESTINATION_EMAIL"))
     message["Subject"] = "Google News"
     message.set_content(content)
 
